@@ -1,4 +1,4 @@
-# AdAuditAI 纯净状态模板 (v1.1.0)
+# AdAuditAI 纯净状态模板 (v1.0.0)
 # 创建时间: 2026-02-10
 # 最后更新: 2026-02-10 (添加离线浏览器支持)
 # 用途: 用于测试后快速恢复纯净状态，或验证分发版本完整性
@@ -226,7 +226,7 @@ Test-Path "browsers\chromium-1208\chrome-win\chrome.exe"
 | `src/` + 配置文件 | 1.3MB | 0.1% |
 | **总计** | **1062MB** | **100%** |
 
-## 🔧 最近更新说明 (v1.1.0)
+## 🔧 最近更新说明 (v1.0.0)
 
 ### 关键修复和改进：
 1. **修复start.bat闪退问题**：
@@ -245,7 +245,7 @@ Test-Path "browsers\chromium-1208\chrome-win\chrome.exe"
 4. **纯净状态模板更新**：
    - 包含新文件 `check_playwright.py`
    - 更新清理步骤包含临时日志文件
-   - 更新版本号为 v1.1.0
+   - 更新版本号为 v1.0.0
 
 5. **离线浏览器支持**：
    - 内置完整的Chromium浏览器（约200MB）
@@ -263,3 +263,4 @@ Test-Path "browsers\chromium-1208\chrome-win\chrome.exe"
 
 ---
 **保持此文件作为参考模板，每次测试后对照此模板快速恢复纯净状态。**
+
