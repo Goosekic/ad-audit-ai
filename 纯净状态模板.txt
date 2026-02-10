@@ -1,0 +1,265 @@
+# AdAuditAI 纯净状态模板 (v1.1.0)
+# 创建时间: 2026-02-10
+# 最后更新: 2026-02-10 (添加离线浏览器支持)
+# 用途: 用于测试后快速恢复纯净状态，或验证分发版本完整性
+
+## 📋 项目状态确认
+✅ **纯净版确认**: 当前项目已准备好直接压缩分发给用户使用
+✅ **虚拟环境**: `venv/` 已删除（首次启动自动创建）
+✅ **用户数据**: `sessions.json` 已清空（空数组）
+✅ **临时文件**: 所有缓存、日志、临时文件已清除
+✅ **离线浏览器**: `browsers/` 目录包含完整的Chromium浏览器（离线支持）
+✅ **冗余文件**: 不必要的辅助文件已删除
+✅ **Playwright支持**: 新增 `check_playwright.py` 浏览器检查脚本
+
+## 📁 项目文件结构 (必需保留)
+
+### 🎯 核心目录结构
+```
+AdAuditAI/
+├── python-3.13-embed/      # 嵌入式Python 3.13.12 (必需，约650MB)
+├── src/                    # 所有源代码 (必需，约1.3MB)
+├── models/                 # 模型文件 (必需，约211MB)
+└── 配置文件等              # 各种配置文件 (必需，<1MB)
+```
+
+### 📄 详细文件清单
+
+#### 1. 嵌入式Python环境 (必需)
+```
+python-3.13-embed/          # 完整Python环境，无需安装
+├── python.exe              # Python解释器
+├── Scripts/                # 可执行脚本目录
+├── Lib/                    # 标准库和site-packages
+└── ... 其他Python必要文件
+```
+**作用**: 提供独立的Python运行环境，无需用户安装Python
+**大小**: 约650MB
+**状态**: ✅ 必须完整保留
+
+#### 2. 模型文件 (必需)
+```
+models/
+└── whisper/
+    ├── base.pt             # Whisper基础精度模型 (138.5MB)
+    └── tiny.pt             # Whisper快速低精度模型 (72.1MB)
+```
+**作用**: 语音识别转文字功能的核心模型
+**大小**: 约211MB
+**状态**: ✅ 必须完整保留
+
+#### 3. 浏览器文件 (必需)
+```
+browsers/
+└── chromium-1208/
+    ├── INSTALLATION_COMPLETE         # 安装完成标记
+    ├── DEPENDENCIES_VALIDATED        # 依赖验证标记
+    └── chrome-win/                   # Chromium浏览器完整文件
+        ├── chrome.exe                # 浏览器可执行文件 (3.0MB)
+        ├── chrome.dll                # 主动态库 (273MB)
+        └── ...（完整浏览器文件，共约200MB）
+```
+**作用**: 提供完整的离线Chromium浏览器，支持Session抓取功能
+**大小**: 约200MB
+**状态**: ✅ 必须完整保留（离线安装核心组件）
+
+#### 4. 源代码目录 (必需)
+```
+src/
+├── api/                    # API路由和端点
+├── core/                   # 核心分析功能
+├── douyin_analyzer/        # 抖音分析功能
+├── install/                # 安装程序
+├── packaging/              # 打包功能
+├── pool/                   # 会话池管理
+├── service/                # 各种服务
+├── session_crawler/        # 会话爬虫
+├── static/                 # 网页静态资源 (包含Bootstrap)
+├── templates/              # HTML模板文件
+├── update/                 # 更新和启动器
+└── whisper_service/        # 语音识别服务
+```
+**作用**: 所有应用程序功能的源代码
+**大小**: 约1.3MB
+**状态**: ✅ 必须完整保留
+
+#### 5. 根目录配置文件 (必需)
+```
+├── start.bat               # 一键启动脚本 (Windows) - 已修复闪退问题
+├── restart.bat             # 重启脚本 (Windows) - 已修复乱码问题
+├── main.py                 # 主程序入口
+├── config.py               # 主配置文件
+├── deps_config.py          # 依赖配置
+├── requirements.txt        # Python依赖列表
+├── README.md               # 项目说明文档
+├── 使用指南.txt            # 中文使用指南
+├── version.json.template   # 版本更新模板
+├── check_playwright.py     # Playwright浏览器检查脚本 (新增)
+└── sessions.json           # 会话配置 (已清空为空数组)
+```
+
+## 🔄 可删除文件/目录对照表 (测试后清理)
+
+### ❌ 必须删除的文件/目录 (测试后)
+| 文件/目录 | 删除命令 | 原因 |
+|-----------|----------|------|
+| `venv/` | `rmdir /s /q venv` | 虚拟环境，首次启动自动重建 |
+| `logs/` | `rmdir /s /q logs` | 日志目录，config.py自动创建 |
+| `data/` | `rmdir /s /q data` | 数据目录，config.py自动创建 |
+| `__pycache__/` | `del /s /q *.pyc & rmdir /s /q __pycache__` | Python编译缓存 |
+| `*.pyc` | `del /s /q *.pyc` | Python字节码文件 |
+
+### ⚠️ 可选择性删除的文件 (分发前)
+| 文件 | 建议 | 原因 |
+|------|------|------|
+| `compress_exclude.txt` | 删除 | 压缩排除列表，用户不需要 |
+| `压缩指南.txt` | 删除 | 压缩操作指南，用户不需要 |
+| `static/` (根目录重复) | 删除 | 与`src/static/`重复 |
+| `start.log` | 删除 | 启动日志文件，临时文件 |
+| `chrome-win64.zip` | 删除 | 原始浏览器安装包，已解压到`browsers/`目录 |
+
+### ✅ 必须保留的文件/目录
+| 文件/目录 | 必须性 | 作用 |
+|-----------|--------|------|
+| `python-3.13-embed/` | 必需 | 嵌入式Python环境 |
+| `models/` | 必需 | 语音识别模型 |
+| `src/` | 必需 | 所有源代码 |
+| `browsers/` | 必需 | 离线Chromium浏览器（Session抓取） |
+| `start.bat` | 必需 | 一键启动脚本 (已修复) |
+| `restart.bat` | 必需 | 重启脚本 (已修复) |
+| `check_playwright.py` | 必需 | Playwright浏览器检查脚本 |
+| `config.py` | 必需 | 主配置文件 |
+| `requirements.txt` | 必需 | 依赖列表 |
+| `main.py` | 必需 | 程序入口 |
+| `sessions.json` | 必需 | 会话配置 (可清空) |
+| `version.json.template` | 必需 | 版本更新模板 |
+| `使用指南.txt` | 必需 | 中文使用指南 |
+| `deps_config.py` | 必需 | 依赖配置 |
+| `README.md` | 必需 | 项目说明文档 |
+
+## 🧹 手动清理步骤
+
+### 1. 删除虚拟环境
+```powershell
+Remove-Item -Path "venv" -Recurse -Force -ErrorAction SilentlyContinue
+```
+
+### 2. 删除日志和数据目录
+```powershell
+Remove-Item -Path "logs", "data" -Recurse -Force -ErrorAction SilentlyContinue
+```
+
+### 3. 清理Python缓存
+```powershell
+Get-ChildItem -Path . -Recurse -Include "*.pyc", "__pycache__" | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
+```
+
+### 4. 清理辅助文件
+```powershell
+Remove-Item -Path "chrome-win64.zip" -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "static" -Recurse -Force -ErrorAction SilentlyContinue
+```
+
+### 5. 重置sessions.json
+```powershell
+"[]" | Out-File -FilePath "sessions.json" -Encoding UTF8
+```
+
+## 📦 压缩分发检查清单
+
+### 压缩前验证：
+- [ ] `venv/` 目录不存在（已删除）
+- [ ] `sessions.json` 内容为 `[]`（空数组）
+- [ ] `logs/` 和 `data/` 目录不存在
+- [ ] 无 `__pycache__/` 或 `*.pyc` 文件
+- [ ] `python-3.13-embed/` 目录完整存在
+- [ ] `models/whisper/` 包含 `base.pt` 和 `tiny.pt`
+- [ ] `start.bat` 和 `restart.bat` 文件可执行
+- [ ] `check_playwright.py` 文件存在
+- [ ] `browsers/` 目录完整存在（包含Chromium浏览器）
+- [ ] 总大小约 1062MB (1.04GB)
+
+### 用户接收后验证：
+- [ ] 解压后双击 `start.bat` 能正常启动
+- [ ] 自动创建 `venv/` 虚拟环境
+- [ ] 自动安装依赖包（需网络）
+- [ ] 自动检测离线Chromium浏览器（无需网络）
+- [ ] 浏览器自动打开 http://localhost:8000
+- [ ] 所有功能模块正常工作
+
+## 🎯 纯净状态验证命令
+
+```powershell
+# 检查关键文件存在性
+Test-Path "python-3.13-embed\python.exe"
+Test-Path "models\whisper\base.pt"
+Test-Path "models\whisper\tiny.pt"
+Test-Path "start.bat"
+Test-Path "restart.bat"
+Test-Path "check_playwright.py"
+Test-Path "config.py"
+Test-Path "requirements.txt"
+Test-Path "main.py"
+Test-Path "version.json.template"
+Test-Path "使用指南.txt"
+Test-Path "browsers\chromium-1208\chrome-win\chrome.exe"
+
+# 检查不应存在的文件/目录
+-not (Test-Path "venv")
+-not (Test-Path "logs")
+-not (Test-Path "data")
+-not (Test-Path "compress_exclude.txt")
+-not (Test-Path "压缩指南.txt")
+-not (Test-Path "start.log")
+
+# 检查sessions.json为空
+(Get-Content "sessions.json" -Raw).Trim() -eq "[]"
+```
+
+## 📊 项目大小统计 (当前)
+
+| 组件 | 大小 | 占比 |
+|------|------|------|
+| `python-3.13-embed/` | 650MB | 61.2% |
+| `models/` | 211MB | 19.9% |
+| `browsers/` | 200MB | 18.8% |
+| `src/` + 配置文件 | 1.3MB | 0.1% |
+| **总计** | **1062MB** | **100%** |
+
+## 🔧 最近更新说明 (v1.1.0)
+
+### 关键修复和改进：
+1. **修复start.bat闪退问题**：
+   - 将Playwright检查逻辑移至 `check_playwright.py` Python脚本
+   - 避免批处理脚本语法解析冲突
+
+2. **修复restart.bat乱码问题**：
+   - 将所有乱码的中文提示替换为清晰的英文提示
+   - 保持脚本功能不变，提高可读性
+
+3. **增强浏览器安装流程**：
+   - 新增 `check_playwright.py` 脚本进行浏览器检查和安装
+   - 网络容错性：即使浏览器安装失败，应用仍能正常启动
+   - 提供清晰的手动安装指导
+
+4. **纯净状态模板更新**：
+   - 包含新文件 `check_playwright.py`
+   - 更新清理步骤包含临时日志文件
+   - 更新版本号为 v1.1.0
+
+5. **离线浏览器支持**：
+   - 内置完整的Chromium浏览器（约200MB）
+   - 完全离线运行，无需网络下载浏览器
+   - Session抓取功能立即可用，无需等待安装
+   - 启动脚本自动检测并使用本地浏览器
+
+## 🚀 分发流程总结
+
+1. **使用此模板验证**当前项目状态
+2. **运行清理步骤**确保纯净
+3. **压缩整个`AdAuditAI`文件夹**为ZIP/7z
+4. **分发压缩包**（约1062MB）
+5. **用户解压后双击`start.bat`**即可使用
+
+---
+**保持此文件作为参考模板，每次测试后对照此模板快速恢复纯净状态。**
