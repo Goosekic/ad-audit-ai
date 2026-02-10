@@ -276,10 +276,10 @@ SESSION_CONFIG = {
 
 # 版本配置
 VERSION_CONFIG = {
-    "current_version": "1.1.0",
-    "update_check_url": "https://raw.githubusercontent.com/example/ad-audit-ai/main/version.json",
-    "update_download_url": "https://github.com/example/ad-audit-ai/releases/download/v{version}/AdAuditAI-v{version}.zip",
-    "check_interval": 86400,  # 24小时检查一次
+    "current_version": "1.0.0",  # 必须和Release版本一致
+    "update_check_url": "https://raw.githubusercontent.com/Goosekic/ad-audit-ai/main/version.json",
+    "update_download_url": "https://github.com/Goosekic/ad-audit-ai/releases/download/v{version}/AdAuditAI-v{version}.zip",
+    "check_interval": 86400,
     "auto_update": True,
 }
 
