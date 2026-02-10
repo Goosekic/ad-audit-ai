@@ -6,7 +6,7 @@
     "en-US": "Initial release with full functionality"
   },
   "release_info": {
-    "download_url": "https://github.com/zhangsan/ad-audit-ai/releases/download/v1.0.0/AdAuditAI-v1.0.0.zip",
+    "download_url": "https://github.com/Goosekic/ad-audit-ai/releases/download/v1.0.0/AdAuditAI-v1.0.0.zip",
     "file_size": 1048576000,  // 1.04GB，单位：字节
     "md5_hash": "计算出的MD5值",
     "sha256_hash": "计算出的SHA256值",
