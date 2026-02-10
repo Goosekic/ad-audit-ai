@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "release_date": "2026-02-10",
+  "release_notes": {
+    "zh-CN": "初始版本发布，包含完整功能",
+    "en-US": "Initial release with full functionality"
+  },
+  "release_info": {
+    "download_url": "https://github.com/zhangsan/ad-audit-ai/releases/download/v1.0.0/AdAuditAI-v1.0.0.zip",
+    "file_size": 1048576000,  // 1.04GB，单位：字节
+    "md5_hash": "计算出的MD5值",
+    "sha256_hash": "计算出的SHA256值",
+    "min_required_version": "1.0.0",
+    "compatible_versions": ["1.0.0"],
+    "critical_update": false
+  }
+},
+  "requirements": {
+    "python_version": ">=3.8",
+    "operating_systems": ["windows", "linux", "macos"],
+    "dependencies": {
+      "fastapi": ">=0.100.0",
+      "uvicorn": ">=0.22.0",
+      "torch": ">=2.0.0"
+    }
+  }
+}
