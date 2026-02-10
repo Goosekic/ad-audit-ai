@@ -246,7 +246,7 @@ start.bat --reload
 
 ## 版本信息
 
-- **版本**: 1.2.0 (第一版稳定版)
+- **版本**: 1.0.0 (第一版稳定版)
 - **Python**: 3.13.12（嵌入式）
 - **框架**: FastAPI + Uvicorn
 - **核心模型**: Whisper 20250625 + PyTorch 2.9.1 CPU-only
