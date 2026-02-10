@@ -7,9 +7,9 @@
   },
   "release_info": {
     "download_url": "https://github.com/Goosekic/ad-audit-ai/releases/download/v1.1.0/AdAuditAI-v1.1.0.zip",
-    "file_size": 0,
-    "md5_hash": "",
-    "sha256_hash": "",
+    "file_size": 589990068,
+    "md5_hash": "6CBF9E0F33507EE15A0CAF243268255B",
+    "sha256_hash": "C38DD56E3E9ABF0F43C28CB210804E85289506FF875BBCA7C96EE6EC1A9CBA31",
     "min_required_version": "1.0.0",
     "compatible_versions": ["1.0.0", "1.1.0"],
     "critical_update": false,
