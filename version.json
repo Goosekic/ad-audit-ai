@@ -1,20 +1,44 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "release_date": "2026-02-10",
   "release_notes": {
-    "zh-CN": "初始版本发布，包含完整功能",
-    "en-US": "Initial release with full functionality"
+    "zh-CN": "v1.1.0 热更新版本发布，包含语音识别修复、自动更新系统等功能",
+    "en-US": "v1.1.0 hot update release with audio recognition fixes and auto-update system"
   },
   "release_info": {
-    "download_url": "https://github.com/Goosekic/ad-audit-ai/releases/download/v1.0.0/AdAuditAI-v1.0.0.zip",
-    "file_size": 1048576000,  // 1.04GB，单位：字节
-    "md5_hash": "计算出的MD5值",
-    "sha256_hash": "计算出的SHA256值",
+    "download_url": "https://github.com/Goosekic/ad-audit-ai/releases/download/v1.1.0/AdAuditAI-v1.1.0.zip",
+    "file_size": 0,
+    "md5_hash": "",
+    "sha256_hash": "",
     "min_required_version": "1.0.0",
-    "compatible_versions": ["1.0.0"],
-    "critical_update": false
-  }
-},
+    "compatible_versions": ["1.0.0", "1.1.0"],
+    "critical_update": false,
+    "changelog": [
+      {
+        "version": "1.1.0",
+        "date": "2026-02-10",
+        "changes": [
+          "修复MP3音频文件损坏问题，增加三重修复机制",
+          "优化音频处理兼容性，支持损坏MP3文件的自动修复",
+          "修复torchaudio兼容性问题，替换已废弃函数",
+          "更新专业抖音广告审核AI prompt，支持6大质量维度",
+          "新增自动更新系统，支持后台静默更新",
+          "增强语音识别界面功能，添加历史记录删除按钮",
+          "优化用户体验，支持ESC快捷键和重新上传功能",
+          "内置完整Chromium浏览器，支持离线Session抓取",
+          "支持热更新模式，开发调试更高效"
+        ]
+      },
+      {
+        "version": "1.0.0",
+        "date": "2026-02-09",
+        "changes": [
+          "初始版本发布",
+          "包含广告分析、语音识别、视频处理等核心功能"
+        ]
+      }
+    ]
+  },
   "requirements": {
     "python_version": ">=3.8",
     "operating_systems": ["windows", "linux", "macos"],
